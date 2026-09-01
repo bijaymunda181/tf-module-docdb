@@ -9,24 +9,24 @@ resource "aws_security_group" "main" {
   name        = "${local.name_prefix}-sg"
   description = "${local.name_prefix}-sg"
   vpc_id      = var.vpc_id
-  tags = merge(local.tags, {name = "${local.name_prefix}-sg"})
+  tags = merge(local.tags, { name = "${local.name_prefix}-sg" })
 
 
   ingress {
     description = "DOCDB"
-    from_port        = 27017
-    to_port          = 27017
-    protocol         = "tcp"
-    cidr_blocks      = var.sg_ingress_cidr
+    from_port   = 27017
+    to_port     = 27017
+    protocol    = "tcp"
+    cidr_blocks = var.sg_ingress_cidr
   }
   egress {
-    from_port       = 0
-    to_port         = 0
-    protocol        = "-1"
-    cidr_blocks      = ["0.0.0.0/0"]
+    from_port = 0
+    to_port   = 0
+    protocol  = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
-
 }
+
 
 resource "aws_docdb_cluster_parameter_group" "main" {
   family      = "docdb4.0"
