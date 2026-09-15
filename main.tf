@@ -38,7 +38,7 @@ resource "aws_docdb_cluster_parameter_group" "main" {
 
 resource "aws_docdb_cluster" "main" {
   cluster_identifier               = "${local.name_prefix}-cluster"
-  engine                           = "docdb"
+  engine                           = "aurora-postgresql"
   master_username                  = data.aws_ssm_parameter.master_username.value
   master_password                  = data.aws_ssm_parameter.master_password.value
   backup_retention_period          = var.backup_retention_period
